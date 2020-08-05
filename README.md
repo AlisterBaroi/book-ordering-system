@@ -4,5 +4,5 @@ This project was made me (Alister Animesh Baroi) as assignemnt for my web develo
 |Languages:|HTML|CSS|JavaScript|
 |:--------:|:--:|:-:|:--------:|
 
-With that being said, you are, howvevr, allowed to download and view the project.<br>
+With that being said, you are, however, allowed to download and view the project.<br>
 Enjoy
