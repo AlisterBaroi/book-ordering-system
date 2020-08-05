@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Ordering System</title>
+</head>
+<style>
+    body {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        background-color: #e5e5eb;
+        background-image: url(images/book.svg), url(images/book1.svg), url(images/book2.svg), url(images/book3.svg), url(images/book4.svg), url(images/book5.svg), url(images/book6.svg), url(images/book7.svg);
+        background-position: 99% 156%, 1% 150%, 14% 145%, 28% 148%, 42% 150%, 56% 147%, 70% 150%, 84% 150%;
+        background-repeat: no-repeat;
+        background-size: 7%;
+        color: #242F3F;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    .loader {
+        margin: 25% 0;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        border: 4px solid #242F3F;
+        top: 50%;
+        animation: loader 2s infinite ease;
+        display: visible;
+    }
+
+    .loader-inner {
+        vertical-align: top;
+        display: inline-block;
+        width: 100%;
+        background-color: #242F3F;
+        border: -2px solid #e5e5eb;
+        animation: loader-inner 2s infinite ease-in;
+    }
+
+    @keyframes loader {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        25% {
+            transform: rotate(180deg);
+        }
+
+        50% {
+            transform: rotate(180deg);
+        }
+
+        75% {
+            transform: rotate(360deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes loader-inner {
+        0% {
+            height: 0%;
+        }
+
+        25% {
+            height: 0%;
+        }
+
+        50% {
+            height: 100%;
+        }
+
+        75% {
+            height: 100%;
+        }
+
+        100% {
+            height: 0%;
+        }
+    }
+
+    span {
+        -webkit-animation: fadeOut 3s;
+        animation: fadeOut 3s;
+    }
+
+    table {
+        width: 90vw;
+        margin: 0 auto;
+        border-spacing: 0;
+        border-radius: 20px;
+        background: #ecf0f3;
+        box-shadow: 10px 10px 10px #cbced1, -5px -5px 10px #ffffff;
+        display: none;
+    }
+
+    .header {
+        width: 100%;
+        height: 6vh;
+        font-weight: bolder;
+        margin: 0;
+    }
+
+    .b {
+        border-radius: 5px;
+        border: 1px solid #ecf0f3;
+        padding: 0;
+        margin: 0;
+    }
+
+    .b1 {
+        border-right: 3px solid #cbced1;
+    }
+
+    .no {
+        width: 1%;
+        padding: 10px 0 10px 20px;
+    }
+
+    .bt {
+        width: 25%;
+        padding: 10px 20px 10px 5px;
+    }
+
+    .a {
+        width: 20%;
+        padding: 10px 20px 10px 5px;
+    }
+
+    .c {
+        width: 15%;
+        padding: 10px 20px 10px 5px;
+
+    }
+
+    .up {
+        width: 10%;
+        padding: 10px 20px 10px 10px;
+    }
+
+    .row {
+        width: 100%;
+        height: 6vh;
+        margin: auto;
+        padding: 0;
+        text-align: center;
+    }
+
+    .row:hover {
+        background-color: #fff;
+    }
+
+    .tr {
+        text-align: right;
+    }
+
+    .tia {
+        background-color: #cbced1 !important;
+        box-shadow: inset 4px 4px 8px #555 !important;
+    }
+
+    .input {
+        width: 95%;
+        height: 4vh;
+        margin: 0;
+        font-size: 10pt;
+        border-radius: 5px;
+        background: #e5e5eb;
+        box-shadow: inset 5px 5px 5px #cbced1;
+    }
+
+    .hr {
+        width: 90vw;
+        height: 3px;
+        margin: 10px 0;
+        background: #cbced1;
+    }
+
+    .input1 {
+        width: 160%;
+        height: 6vh;
+        margin: 10px 0 10px -60px;
+        font-size: 18pt;
+
+    }
+
+    .cal {
+        width: 170%;
+        height: 6vh;
+        background: #24cfaa;
+        font-size: 10pt;
+        color: #fff;
+        margin: 5px 0 5px -65px;
+        padding: 0;
+
+    }
+
+    .cal:hover {
+        background: #2fdbb6;
+        cursor: pointer;
+    }
+
+    .cal:active {
+        background: #1da88a;
+    }
+</style>
+
+<body>
+    <span class="loader"><span class="loader-inner"></span></span>
+    <h1 style="display: none;">Book Ordering System</h1>
+    <table>
+        <tr class="header">
+            <th class="no">No.</th>
+            <th class="bt">Book Title</th>
+            <th class="a">Author</th>
+            <th class="c">Category</th>
+            <th class="up">Unit Price</th>
+            <th class="up">Quantity</th>
+            <th class="up">Total</th>
+        </tr>
+        <tr class="hr">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="row">
+            <td class="no">1</td>
+            <td class="bt"><input class="input b" type="text"></td>
+            <td class="a"><input class="input b" type="text"></td>
+            <td class="c">
+                <select class="input b" name="" id="">
+                    <option class="" value="">Please Choose Category...</option>
+                    <option class="" value="">Business</option>
+                    <option class="" value="">Fiction</option>
+                    <option class="" value="">Mathematics</option>
+                    <option class="" value="">Technology</option>
+                </select>
+            </td>
+            <td class="up"><input class="input tr b" id="up1" type="text" value="0.00"
+                    onkeypress="return isNumber(event)" onchange="DP2(this)">
+            </td>
+            <td class="up b1"><input class="input tr b" id="q1" type="text" min="1" value="0"
+                    onkeypress="return isNumber(event)"></td>
+            <td class="up"><input class="input tr tia b" id="t1" type="text" value="0.00" readonly></td>
+        </tr>
+        <tr class="row">
+            <td class="no">2</td>
+            <td class="bt"><input class="input b" type="text"></td>
+            <td class="a"><input class="input b" type="text"></td>
+            <td class="c">
+                <select class="input b" name="" id="">
+                    <option class="" value="">Please Choose Category...</option>
+                    <option class="" value="">Business</option>
+                    <option class="" value="">Fiction</option>
+                    <option class="" value="">Mathematics</option>
+                    <option class="" value="">Technology</option>
+                </select>
+            </td>
+            <td class="up"><input class="input tr b" id="up2" type="text" value="0.00"
+                    onkeypress="return isNumber(event)" onchange="DP2(this)"></td>
+            <td class="up b1"><input class="input tr b" id="q2" type="text" value="0"
+                    onkeypress="return isNumber(event)">
+            </td>
+            <td class="up"><input class="input tr tia b" id="t2" type="text" value="0.00" readonly></td>
+        </tr>
+        <tr class="row">
+            <td class="no">3</td>
+            <td class="bt"><input class="input b" type="text"></td>
+            <td class="a"><input class="input b" type="text"></td>
+            <td class="c">
+                <select class="input b" name="" id="">
+                    <option class="" value="">Please Choose Category...</option>
+                    <option class="" value="">Business</option>
+                    <option class="" value="">Fiction</option>
+                    <option class="" value="">Mathematics</option>
+                    <option class="" value="">Technology</option>
+                </select>
+            </td>
+            <td class="up"><input class="input tr b" id="up3" type="text" value="0.00"
+                    onkeypress="return isNumber(event)" onchange="DP2(this)"></td>
+            <td class="up b1"><input class="input tr b" id="q3" type="text" value="0"
+                    onkeypress="return isNumber(event)">
+            </td>
+            <td class="up"><input class="input tr tia b" id="t3" type="text" value="0.00" readonly></td>
+        </tr>
+        <tr class="row">
+            <td class="no">4</td>
+            <td class="bt"><input class="input b" type="text"></td>
+            <td class="a"><input class="input b" type="text"></td>
+            <td class="c">
+                <select class="input b" name="" id="">
+                    <option class="" value="">Please Choose Category...</option>
+                    <option class="" value="">Business</option>
+                    <option class="" value="">Fiction</option>
+                    <option class="" value="">Mathematics</option>
+                    <option class="" value="">Technology</option>
+                </select>
+            </td>
+            <td class="up"><input class="input tr b" id="up4" type="text" value="0.00"
+                    onkeypress="return isNumber(event)" onchange="DP2(this)"></td>
+            <td class="up b1"><input class="input tr b" id="q4" type="text" value="0"
+                    onkeypress="return isNumber(event)">
+            </td>
+            <td class="up"><input class="input tr tia b" id="t4" type="text" value="0.00" readonly></td>
+        </tr>
+        <tr class="row">
+            <td class="no">5</td>
+            <td class="bt"><input class="input b" type="text"></td>
+            <td class="a"><input class="input b" type="text"></td>
+            <td class="c">
+                <select class="input b" name="" id="">
+                    <option class="" value="">Please Choose Category...</option>
+                    <option class="" value="">Business</option>
+                    <option class="" value="">Fiction</option>
+                    <option class="" value="">Mathematics</option>
+                    <option class="" value="">Technology</option>
+                </select>
+            </td>
+            <td class="up"><input class="input tr b" id="up5" type="text" value="0.00"
+                    onkeypress="return isNumber(event)" onchange="DP2(this)"></td>
+            <td class="up b1"><input class="input tr b" id="q5" type="text" value="0"
+                    onkeypress="return isNumber(event)">
+            </td>
+            <td class="up"><input class="input tr tia b" id="t5" type="text" value="0.00" readonly></td>
+        </tr>
+        <tr class="hr">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="header">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th class="up"><button id="calc" onclick="abc()" class="cal b">Calculate Grand Total</button></th>
+            <th></th>
+            <th class="up"><input class="b input1 tr tia" id="T" type="text" value="0.00" readonly>
+            </th>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        // Load CSS loading screen effect
+        window.onload = function () {
+            setTimeout(function () {
+                var l = document.getElementsByTagName('span')[0];
+                var m = document.getElementsByTagName('table')[0];
+                var n = document.getElementsByTagName('h1')[0];
+                l.style.cssText = "display: none";
+                m.style.cssText = "display: block";
+                n.style.cssText = "display: block";
+            }, 3000);
+        };
+
+        // Make the number text inputs only accept numbers
+        function isNumber(event) {
+            var key = window.event ? event.keyCode : event.which;
+            if (key > 45 && key < 58) {
+                return true
+            } else {
+                event.preventDefault()
+            }
+        }
+        // Fix the unit price input to 2 decimal place
+        function DP2(el) {
+            el.value = parseFloat(el.value).toFixed(2)
+        }
+        // Calculate total, fix it to 2 decoimal place, and add them for grand total to 2 decimal place
+        function abc() {
+            var UP1 = document.getElementById("up1").value;
+            var Q1 = document.getElementById("q1").value;
+            var T1 = UP1 * Q1
+            document.getElementById("t1").value = T1.toFixed(2);
+
+            var UP2 = document.getElementById("up2").value;
+            var Q2 = document.getElementById("q2").value;
+            var T2 = UP2 * Q2
+            document.getElementById("t2").value = T2.toFixed(2);
+
+            var UP3 = document.getElementById("up3").value;
+            var Q3 = document.getElementById("q3").value;
+            var T3 = UP3 * Q3
+            document.getElementById("t3").value = T3.toFixed(2);
+
+            var UP4 = document.getElementById("up4").value;
+            var Q4 = document.getElementById("q4").value;
+            var T4 = UP4 * Q4
+            document.getElementById("t4").value = T4.toFixed(2);
+
+            var UP5 = document.getElementById("up5").value;
+            var Q5 = document.getElementById("q5").value;
+            var T5 = UP5 * Q5
+            document.getElementById("t5").value = T5.toFixed(2);
+
+
+            // Grand total to 2 deicmal place
+            var T = T1 + T2 + T3 + T4 + T5
+            document.getElementById("T").value = T.toFixed(2);
+        }
+    </script>
+</body>
+
+</html>
